@@ -4,15 +4,15 @@ exports.run = (client, message, args) => {
     const member = message.mentions.members.first();
     if (!member) return message.reply("you must mention someone!");
 
+    let nameToGive
     for (const arg of args) {
         const match = new RegExp(`^<@!?${member.user.id}>`).exec(arg);
         if (match) {
-            args = args.splice(args.indexOf(match[1]), 1);
+            nameToGive = args.splice(args.indexOf(match[1]), 1).join(' ');
+            break;
         }
     }
 
-    console.log(args);
-
-    member.setNickname(args.join(" "))
-    .catch(console.error);
+    member.setNickname(nameToGive)
+    .catch(() => null);
 }
