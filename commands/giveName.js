@@ -1,6 +1,6 @@
 module.exports.run = (client, message, [user, ...args]) => {
     if (!user) return message.reply("you must provide a member and his new nickname");
-    let match = /^<@!?(\d{17,19})>$|^(\d{17,19})$/.exec(user);
+    let match = /^<@!?(\d{17,19})>$/.exec(user);
     if (!match) return;
 
     if (!args) return message.reply("you must provide a nickname!");
